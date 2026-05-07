@@ -1,0 +1,21 @@
+// largest of 3 numbers
+
+import java.util.Scanner;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter 3 numbers: ");
+        int inputNum1, inputNum2, inputNum3;
+        inputNum1 = sc.nextInt();
+        inputNum2 = sc.nextInt();
+        inputNum3 = sc.nextInt();
+        if (inputNum1 > inputNum2 && inputNum1 > inputNum3) {
+            System.out.println(inputNum1 + " is the greatest!");
+        } else if (inputNum2 > inputNum1 && inputNum2 > inputNum3) {
+            System.out.println(inputNum2 + " is the greatest!");
+        } else {
+            System.out.println(inputNum3 + " is the greatest!");
+        }
+    }
+}
