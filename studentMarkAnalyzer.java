@@ -3,7 +3,7 @@
 import java.util.Scanner;
 
 class Main {
-    public static void countPassAndFail(int myArr[]) {
+    public static void countPassAndFail(int[] myArr) {
         int passCount, failCount;
         passCount = 0;
         failCount = 0;
@@ -19,7 +19,7 @@ class Main {
     }
     
     public static char markGradingSystem(int mark) {
-        if (!(mark > 100 || mark < 0)) {
+        if (mark <= 100 && mark >= 0) {
             if (mark >= 90) {
                 return 'A';
             } else if (mark >= 80) {
@@ -36,7 +36,7 @@ class Main {
     }
     
     
-    public static void studentMarkAnalyzer(int myArr[], int n) {
+    public static void studentMarkAnalyzer(int[] myArr, int n) {
         int totalMark, minMark, maxMark;
         double avgMark;
         totalMark = 0;
@@ -51,7 +51,7 @@ class Main {
             if (maxMark < myArr[i])
                 maxMark = myArr[i];
         }
-        System.out.println();
+        System.out.println("\nGrades Assigned: ");
         avgMark = (double) totalMark / myArr.length;
         for (int i=0; i<n; i++) {
             System.out.print("\t" + markGradingSystem(myArr[i]));
@@ -68,11 +68,17 @@ class Main {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter the number of students: ");
         int n = sc.nextInt();
+        if (n <= 0) {
+            System.out.println("Invalid number of students!");
+            sc.close();
+            return;
+        }
         int[] myArr = new int[n];
         System.out.println("Enter the marks: ");
         for (int i=0; i<n; i++) {
             myArr[i] = sc.nextInt();
         }
+        sc.close();
         studentMarkAnalyzer(myArr, n);
     }
 }
