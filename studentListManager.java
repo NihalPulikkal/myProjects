@@ -9,22 +9,42 @@ public class Main {
     static Scanner sc = new Scanner(System.in);
     
     // student add method.
-    public static void addStdnt(String str) {
-        stdntList.add(str);
+    public static boolean addStdnt(String str) {
+        for (String stdnt: stdntList) {
+            if (stdnt.equalsIgnoreCase(str)) {
+                System.out.println("Student already exists!");
+                return false;
+            }
+        }
+        return stdntList.add(str);
     }
     
     // student remove method.
-    public static void removeStdnt(String str) {
-        stdntList.remove(str);
+    public static boolean removeStdnt(String str) {
+       for (int i=0; i<stdntList.size(); i++) {
+           if (stdntList.get(i).equalsIgnoreCase(str)) {
+               stdntList.remove(i);
+               return true;
+           }
+       }
+       return false;
     }
     
     // student search method.
     public static boolean searchStdnt(String str) {
-        return stdntList.contains(str);
+        for (String stdnt: stdntList) {
+            if (stdnt.equalsIgnoreCase(str))
+                return true;
+        }
+        return false;
     }
     
     // student list display method.
     public static void displayStdntList() {
+        if (stdntList.isEmpty()){
+            System.out.println("No students found!");
+            return;
+        }
         for (String stdnt: stdntList)
             System.out.println("\t" + stdnt);
     }
@@ -38,13 +58,13 @@ public class Main {
         switch (userChoice) {
             case 1: System.out.print("student name: ");
                     String stdName1 = sc.nextLine();
-                    addStdnt(stdName1);
-                    System.out.println("Student added successfully!");
+                    boolean addResult = addStdnt(stdName1);
+                    System.out.println("Student added: " + addResult);
                     break;
             case 2: System.out.print("student name: ");
                     String stdName2 = sc.nextLine();
-                    removeStdnt(stdName2);
-                    System.out.println("Student removed successfully!");
+                    boolean removeResult = removeStdnt(stdName2);
+                    System.out.println("Student removed: " + removeResult);
                     break;
             case 3: System.out.print("student name: ");
                     String stdName3 = sc.nextLine(); 
